@@ -2,7 +2,7 @@
 
 ## Goal
 
-제공된 디자인의 warm cream/coral 스타일을 React Native 컴포넌트와 navigation 구조로 옮긴다.
+제공된 디자인의 Mist & Indigo Foundation을 React Native 컴포넌트와 navigation 구조로 옮긴다.
 
 ## Design Tokens
 
@@ -10,30 +10,99 @@
 
 ```ts
 export const colors = {
-  cream: "#f7f5f0",
-  cream2: "#efece5",
+  cream: "#eef0f3",
+  cream2: "#e6e9ee",
   paper: "#ffffff",
-  mist: "#e8e4dc",
-  line: "#e3ded3",
-  line2: "#ece8df",
-  ink: "#1a1a1a",
-  ink2: "#2c2c2c",
-  muted: "#6b6760",
-  muted2: "#9a9690",
-  faint: "#c4bfb5",
-  coral: "#ff5a36",
-  coralPressed: "#e54a2a",
-  coral50: "#fff0eb",
-  coral100: "#ffd6c9",
-  sage: "#cdd6c4",
-  sageTint: "#e6ebe0",
-  sky: "#cfdce8",
-  skyTint: "#e7eef4",
-  success: "#4a9b6e",
-  warn: "#d68a3c",
-  danger: "#c04a2e",
+  mist: "#dde0e6",
+  line: "#dde0e6",
+  line2: "#e4e7ec",
+  ink: "#181a22",
+  ink2: "#262a35",
+  muted: "#6a6e7a",
+  muted2: "#9aa0a8",
+  faint: "#c1c5cc",
+
+  indigo: "#3d4ed8",
+  indigoPressed: "#2f3eb8",
+  indigo50: "#e6e9ff",
+  indigo100: "#c8cffc",
+  indigoTint: "#dde2ff",
+
+  // Legacy aliases kept because the design prototype still maps --coral to Indigo.
+  coral: "#3d4ed8",
+  coralPressed: "#2f3eb8",
+  coral50: "#e6e9ff",
+  coral100: "#c8cffc",
+  coralTint: "#dde2ff",
+
+  pink: "#c45a8b",
+  pink50: "#fbeaf1",
+  pink100: "#f3cedd",
+  pinkTint: "#f7dde7",
+
+  mint: "#c8d9d2",
+  mintTint: "#e2ece8",
+  sage: "#c8d9d2",
+  sageTint: "#e2ece8",
+  sky: "#c8d4e8",
+  skyTint: "#e0e7f0",
+  lilac: "#d8d2e8",
+  lilacTint: "#ebe7f3",
+  butter: "#d8d2e8",
+  butterTint: "#ebe7f3",
+
+  success: "#2e8a5e",
+  warn: "#b97d2c",
+  danger: "#c4392e",
+  deadline: "#c45a8b",
+};
+
+export const darkColors = {
+  cream: "#14151a",
+  cream2: "#1b1d24",
+  paper: "#1e2028",
+  mist: "#262833",
+  line: "#262833",
+  line2: "#2c2f3a",
+  ink: "#eceef3",
+  ink2: "#c8ccd5",
+  muted: "#8f93a0",
+  muted2: "#6a6e7a",
+  faint: "#3c3f4a",
+  indigo: "#6c7cff",
+  indigoPressed: "#5566ee",
+  indigo50: "#1f223a",
+  indigo100: "#2a3056",
+  indigoTint: "#232846",
+  coral: "#6c7cff",
+  coralPressed: "#5566ee",
+  coral50: "#1f223a",
+  coral100: "#2a3056",
+  coralTint: "#232846",
+  pink: "#d97aa6",
+  pink50: "#341d2a",
+  pink100: "#4d2a3c",
+  pinkTint: "#3d2333",
+  mint: "#2f4a40",
+  mintTint: "#1f2c28",
+  sage: "#2f4a40",
+  sageTint: "#1f2c28",
+  sky: "#2c3a52",
+  skyTint: "#1d2535",
+  lilac: "#382f4a",
+  lilacTint: "#241e30",
+  butter: "#382f4a",
+  butterTint: "#241e30",
 };
 ```
+
+Token usage rules:
+
+- New code should prefer `indigo*` names for primary actions, links, active tab states, focus rings, and Agent highlights.
+- Keep `coral*` aliases available while porting design code because the prototype maps those variables to Indigo.
+- Use `pink`/`deadline` for deadline, urgent, destructive-adjacent, or warm-contrast schedule emphasis.
+- Use `mint`, `sky`, and `lilac` for category dots/chips.
+- Do not reintroduce the old warm cream/coral palette.
 
 Typography:
 
@@ -47,6 +116,7 @@ Spacing/radius:
 - 카드 radius: 16-24
 - 버튼 radius: pill 또는 16-22
 - bottom tab height는 safe area를 포함해 플랫폼 기본 감각을 유지한다.
+- shadow color는 cool deep slate tone을 사용한다: `rgba(24,26,34,...)`.
 
 ## Shared Components
 
@@ -71,6 +141,7 @@ Spacing/radius:
 - API 호출이나 navigation을 컴포넌트 내부에 넣지 않는다.
 - 버튼 disabled/loading 상태를 지원한다.
 - 모든 touch target은 최소 44px 높이를 목표로 한다.
+- deadline 또는 마감 tag는 primary Indigo가 아니라 `deadline`/`pink` 색상을 사용한다.
 
 ## Navigation
 
@@ -137,4 +208,3 @@ EventDetail:
 - Home, Calendar, EventDetail, ScheduleFlow 간 navigation이 동작한다.
 - 디자인 토큰이 한 파일에서 관리된다.
 - 공통 컴포넌트가 screen에 중복 구현되지 않는다.
-

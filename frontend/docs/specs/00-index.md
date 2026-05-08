@@ -9,7 +9,7 @@
 - PRD: `frontend/docs/product/PRD.md`
 - 기획서: `frontend/docs/product/project-plan.md`
 - 백엔드 API: `backend/README.md`
-- 디자인 참고: Claude 디자인 URL의 Kairos 모바일 앱 화면
+- 디자인 참고: Claude 디자인 URL의 Kairos 모바일 앱 화면, Foundation Palette B `Mist & Indigo`
 
 ## Implementation Order
 
@@ -51,6 +51,7 @@
 
 ## Shared Product Rules
 
+- UI foundation은 Mist & Indigo를 기준으로 한다. Primary accent는 Indigo, deadline/urgent emphasis는 Pink를 사용한다.
 - 사용자 승인 전에는 `POST /api/schedules`를 호출하지 않는다.
 - `start_at`이 없거나 사용자가 이해하기 어려운 날짜 표현이면 등록 확인으로 넘기지 않는다.
 - `reminder_minutes`가 없으면 앱에서 기본값 30분을 적용하되, 등록 확인 카드에 기본 알림임을 표시한다.
@@ -74,4 +75,3 @@ API:
 - `GET /api/schedules`
 
 클라이언트는 API 실패를 사용자에게 실패 상태로 표시하고, 콘솔에 원본 error를 남긴다.
-

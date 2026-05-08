@@ -30,7 +30,7 @@ type DateKey = `${number}-${number}-${number}`; // YYYY-MM-DD
 
 - 일정이 있는 날짜에는 최대 3개 dot을 표시한다.
 - 선택 날짜는 ink 배경 원으로 강조한다.
-- 오늘 날짜는 선택되지 않았을 때 coral outline 또는 작은 dot으로 표시한다.
+- 오늘 날짜는 선택되지 않았을 때 indigo outline 또는 작은 dot으로 표시한다.
 - 선택 날짜 일정 목록은 시작 시간 오름차순이다.
 
 ## Calendar Screen
@@ -109,4 +109,3 @@ type DateKey = `${number}-${number}-${number}`; // YYYY-MM-DD
 - 일정 row를 누르면 상세 화면으로 이동한다.
 - 상세 화면에 제목, 날짜, 시간, 장소, 알림이 올바르게 표시된다.
 - ScheduleFlow 완료 후 Calendar로 이동하면 새 일정 날짜가 선택되어 있다.
-
