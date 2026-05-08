@@ -21,7 +21,7 @@ router = APIRouter()
 def analyze_schedule_route(payload: AnalyzeScheduleRequest) -> AnalyzeScheduleResponse:
     try:
         return analyze_schedule(payload.text, payload.timezone)
-    except RuntimeError as exc:
+    except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_502_BAD_GATEWAY,
             detail="일정 분석 중 문제가 발생했습니다. 잠시 후 다시 시도해주세요.",

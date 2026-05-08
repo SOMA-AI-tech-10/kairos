@@ -5,6 +5,7 @@
   "main": "expo/AppEntry",
   "scripts": {
     "start": "expo start",
+    "start:android": "expo start --android --localhost --clear",
     "ios": "expo start --ios",
     "android": "expo start --android",
     "web": "expo start --web",
