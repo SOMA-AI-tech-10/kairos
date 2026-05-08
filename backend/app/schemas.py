@@ -43,4 +43,5 @@ class ScheduleRead(BaseModel):
     end_at: Optional[datetime]
     location: Optional[str]
     reminder_minutes: int
+    original_text: Optional[str]
     status: str
