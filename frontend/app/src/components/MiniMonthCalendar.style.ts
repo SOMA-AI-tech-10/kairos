@@ -1,79 +1,49 @@
 import { StyleSheet } from "react-native";
 
-import { colors } from "../constants/theme";
-
 export const styles = StyleSheet.create({
-  calendar: {
-    borderRadius: 22,
-    padding: 12,
-    backgroundColor: colors.paper,
-    borderWidth: 1,
-    borderColor: colors.line2,
+  root: {
+    width: "100%",
   },
-  weekRow: {
+  dowRow: {
     flexDirection: "row",
     marginBottom: 6,
+    paddingHorizontal: 2,
   },
-  weekday: {
+  dowCell: {
     flex: 1,
-    textAlign: "center",
-    color: colors.muted,
-    fontSize: 12,
-    fontWeight: "900",
+    alignItems: "center",
+  },
+  dowText: {
+    fontSize: 11,
+    fontWeight: "500",
   },
   grid: {
-    gap: 2,
-  },
-  week: {
     flexDirection: "row",
+    flexWrap: "wrap",
   },
   cell: {
-    flex: 1,
-    minWidth: 0,
-    aspectRatio: 0.86,
+    width: `${100 / 7}%`,
+    alignItems: "center",
+    paddingTop: 4,
+  },
+  dayDisc: {
+    width: 30,
+    height: 30,
+    borderRadius: 15,
     alignItems: "center",
     justifyContent: "center",
   },
-  dayCircle: {
-    width: 34,
-    height: 34,
-    borderRadius: 17,
-    alignItems: "center",
-    justifyContent: "center",
-    overflow: "hidden",
-  },
-  selectedCircle: {
-    backgroundColor: colors.ink,
-    borderRadius: 17,
-  },
-  todayCircle: {
-    borderWidth: 1.5,
-    borderColor: colors.indigo,
-    borderRadius: 17,
-  },
-  day: {
-    color: colors.ink,
-    fontSize: 14,
-    fontWeight: "800",
+  dayText: {
     fontVariant: ["tabular-nums"],
   },
-  outsideDay: {
-    color: colors.muted2,
-  },
-  selectedDay: {
-    color: colors.paper,
-  },
-  dots: {
-    height: 8,
+  markRow: {
     flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
     gap: 2,
+    marginTop: 2,
   },
-  dot: {
+  markDot: {
     width: 4,
     height: 4,
-    borderRadius: 999,
-    backgroundColor: colors.indigo,
+    borderRadius: 2,
   },
 });

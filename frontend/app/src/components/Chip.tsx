@@ -1,55 +1,31 @@
-import { Pressable, StyleSheet, Text } from "react-native";
+import type { ReactNode } from "react";
+import { Pressable, type PressableProps, Text } from "react-native";
 
 import { colors } from "../constants/theme";
+import { styles } from "./Chip.style";
 
 type Props = {
-  label: string;
-  onPress?: () => void;
-  selected?: boolean;
-};
+  children: ReactNode;
+  accent?: boolean;
+} & Omit<PressableProps, "children" | "style">;
 
-export function Chip({ label, onPress, selected }: Props) {
+export function Chip({ children, accent = false, ...rest }: Props) {
   return (
     <Pressable
-      accessibilityRole="button"
-      onPress={onPress}
-      style={({ pressed }) => [
+      {...rest}
+      style={[
         styles.chip,
-        selected && styles.selected,
-        pressed && styles.pressed,
+        {
+          backgroundColor: accent ? colors.indigo50 : colors.paper,
+          borderColor: accent ? colors.indigo100 : colors.line2,
+        },
       ]}
     >
-      <Text style={[styles.label, selected && styles.selectedLabel]}>
-        {label}
+      <Text
+        style={[styles.label, { color: accent ? colors.indigo : colors.ink2 }]}
+      >
+        {children}
       </Text>
     </Pressable>
   );
 }
-
-const styles = StyleSheet.create({
-  chip: {
-    minHeight: 38,
-    borderRadius: 999,
-    paddingHorizontal: 14,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: colors.paper,
-    borderWidth: 1,
-    borderColor: colors.line,
-  },
-  selected: {
-    backgroundColor: colors.indigo,
-    borderColor: colors.indigo,
-  },
-  pressed: {
-    opacity: 0.78,
-  },
-  label: {
-    color: colors.ink2,
-    fontSize: 14,
-    fontWeight: "700",
-  },
-  selectedLabel: {
-    color: colors.paper,
-  },
-});

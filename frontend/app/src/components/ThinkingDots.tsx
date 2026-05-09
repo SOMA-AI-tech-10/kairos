@@ -1,31 +1,58 @@
-import { StyleSheet, View } from "react-native";
+import { useEffect, useRef } from "react";
+import { Animated, Easing, View } from "react-native";
 
-import { colors } from "../constants/theme";
+import { styles } from "./ThinkingDots.style";
+
+const DOT_COUNT = 3;
+const PULSE_DURATION = 900;
 
 export function ThinkingDots() {
+  const animations = useRef(
+    Array.from({ length: DOT_COUNT }, () => new Animated.Value(0)),
+  ).current;
+
+  useEffect(() => {
+    const loops = animations.map((value, index) =>
+      Animated.loop(
+        Animated.sequence([
+          Animated.delay(index * (PULSE_DURATION / DOT_COUNT)),
+          Animated.timing(value, {
+            toValue: 1,
+            duration: PULSE_DURATION / 2,
+            easing: Easing.inOut(Easing.ease),
+            useNativeDriver: true,
+          }),
+          Animated.timing(value, {
+            toValue: 0,
+            duration: PULSE_DURATION / 2,
+            easing: Easing.inOut(Easing.ease),
+            useNativeDriver: true,
+          }),
+        ]),
+      ),
+    );
+    for (const loop of loops) loop.start();
+    return () => {
+      for (const loop of loops) loop.stop();
+    };
+  }, [animations]);
+
   return (
-    <View style={styles.row} accessibilityLabel="분석 중">
-      <View style={styles.dot} />
-      <View style={[styles.dot, styles.middle]} />
-      <View style={styles.dot} />
+    <View style={styles.row}>
+      {animations.map((value, i) => (
+        <Animated.View
+          key={i}
+          style={[
+            styles.dot,
+            {
+              opacity: value.interpolate({
+                inputRange: [0, 1],
+                outputRange: [0.4 + i * 0.15, 1],
+              }),
+            },
+          ]}
+        />
+      ))}
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  row: {
-    flexDirection: "row",
-    gap: 5,
-    paddingVertical: 8,
-  },
-  dot: {
-    width: 8,
-    height: 8,
-    borderRadius: 999,
-    backgroundColor: colors.indigo,
-    opacity: 0.55,
-  },
-  middle: {
-    opacity: 0.85,
-  },
-});

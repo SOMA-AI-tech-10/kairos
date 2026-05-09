@@ -1,52 +1,45 @@
-import { StyleSheet, Text, View } from "react-native";
+import type { ReactNode } from "react";
+import { Text, View } from "react-native";
 
-import { colors } from "../constants/theme";
+import { styles } from "./AgentBubble.style";
+
+type Tone = "agent" | "user" | "system";
 
 type Props = {
-  children: string;
-  from?: "agent" | "user";
+  children: ReactNode;
+  tone?: Tone;
+  small?: boolean;
 };
 
-export function AgentBubble({ children, from = "agent" }: Props) {
-  const isUser = from === "user";
+export function AgentBubble({ children, tone = "agent", small = false }: Props) {
+  const isAgent = tone === "agent";
+  const isUser = tone === "user";
+  const isSystem = tone === "system";
+
+  const bubbleStyle = [
+    styles.bubble,
+    small ? styles.bubbleSmall : styles.bubbleMd,
+    isAgent && styles.bubbleAgent,
+    isUser && styles.bubbleUser,
+    isSystem && styles.bubbleSystem,
+  ];
+
+  const textStyle = [styles.text, isUser && styles.textUser];
+
   return (
-    <View style={[styles.wrapper, isUser && styles.userWrapper]}>
-      <View style={[styles.bubble, isUser ? styles.user : styles.agent]}>
-        <Text style={[styles.text, isUser && styles.userText]}>{children}</Text>
+    <View
+      style={[
+        styles.container,
+        { justifyContent: isUser ? "flex-end" : "flex-start" },
+      ]}
+    >
+      <View style={bubbleStyle}>
+        {typeof children === "string" ? (
+          <Text style={textStyle}>{children}</Text>
+        ) : (
+          children
+        )}
       </View>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  wrapper: {
-    width: "100%",
-    alignItems: "flex-start",
-  },
-  userWrapper: {
-    alignItems: "flex-end",
-  },
-  bubble: {
-    maxWidth: "88%",
-    borderRadius: 20,
-    paddingHorizontal: 16,
-    paddingVertical: 13,
-  },
-  agent: {
-    backgroundColor: colors.paper,
-    borderTopLeftRadius: 8,
-  },
-  user: {
-    backgroundColor: colors.indigo,
-    borderTopRightRadius: 8,
-  },
-  text: {
-    color: colors.ink,
-    fontSize: 16,
-    lineHeight: 23,
-    fontWeight: "600",
-  },
-  userText: {
-    color: colors.paper,
-  },
-});

@@ -1,27 +1,39 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Text, View } from "react-native";
 
 import { colors } from "../constants/theme";
+import { styles } from "./KLogo.style";
 
-export function KLogo() {
+type Props = {
+  size?: number;
+  color?: string;
+};
+
+export function KLogo({ size = 20, color = colors.ink }: Props) {
+  const dotSize = size * 0.42;
+  const fontSize = size * 0.85;
+
   return (
-    <View style={styles.logo}>
-      <Text style={styles.text}>K</Text>
+    <View style={styles.row}>
+      <View
+        style={[
+          styles.mark,
+          {
+            width: size,
+            height: size,
+            borderRadius: size * 0.42,
+          },
+        ]}
+      >
+        <View
+          style={{
+            width: dotSize,
+            height: dotSize,
+            borderRadius: dotSize / 2,
+            backgroundColor: colors.cream,
+          }}
+        />
+      </View>
+      <Text style={[styles.wordmark, { color, fontSize }]}>kairos</Text>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  logo: {
-    width: 38,
-    height: 38,
-    borderRadius: 14,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: colors.ink,
-  },
-  text: {
-    color: colors.paper,
-    fontSize: 18,
-    fontWeight: "800",
-  },
-});

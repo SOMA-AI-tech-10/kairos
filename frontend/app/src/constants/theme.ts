@@ -49,16 +49,41 @@ export const spacing = {
 };
 
 export const radii = {
+  xs: 8,
   sm: 12,
   md: 16,
   lg: 22,
+  xl: 28,
   pill: 999,
 };
 
 export const shadow = {
-  shadowColor: "rgba(24,26,34,0.18)",
-  shadowOffset: { width: 0, height: 12 },
-  shadowOpacity: 0.14,
-  shadowRadius: 24,
-  elevation: 4,
+  sm: {
+    shadowColor: "rgba(24,26,34,1)",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.05,
+    shadowRadius: 8,
+    elevation: 1,
+  },
+  md: {
+    shadowColor: "rgba(24,26,34,1)",
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.07,
+    shadowRadius: 20,
+    elevation: 2,
+  },
+  lg: {
+    shadowColor: "rgba(24,26,34,1)",
+    shadowOffset: { width: 0, height: 24 },
+    shadowOpacity: 0.12,
+    shadowRadius: 60,
+    elevation: 4,
+  },
+};
+
+export const typography = {
+  display: { fontSize: 28, fontWeight: "700" as const, letterSpacing: -1 },
+  heading: { fontSize: 22, fontWeight: "600" as const, letterSpacing: -0.55 },
+  body: { fontSize: 16, fontWeight: "500" as const, letterSpacing: -0.16 },
+  caption: { fontSize: 13, fontWeight: "400" as const },
 };
