@@ -46,7 +46,9 @@ export async function scheduleLocalNotification(
   }
 }
 
-export function notificationMessage(result: NotificationScheduleResult): string {
+export function notificationMessage(
+  result: NotificationScheduleResult,
+): string {
   switch (result) {
     case "scheduled":
       return "일정과 알림이 예약됐어요.";

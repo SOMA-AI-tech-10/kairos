@@ -1,8 +1,8 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, Text, View } from "react-native";
 
-import { colors } from "../constants/theme";
 import type { DateKey } from "../utils/dates";
 import { buildMonthCells, todayKey } from "../utils/dates";
+import { styles } from "./MiniMonthCalendar.style";
 
 type Props = {
   monthDate: Date;
@@ -21,6 +21,9 @@ export function MiniMonthCalendar({
 }: Props) {
   const today = todayKey();
   const cells = buildMonthCells(monthDate);
+  const weeks = Array.from({ length: cells.length / 7 }, (_, index) =>
+    cells.slice(index * 7, index * 7 + 7),
+  );
 
   return (
     <View style={styles.calendar}>
@@ -32,113 +35,47 @@ export function MiniMonthCalendar({
         ))}
       </View>
       <View style={styles.grid}>
-        {cells.map((cell) => {
-          const selected = cell.key === selectedDate;
-          const isToday = cell.key === today;
-          const count = Math.min(countsByDate[cell.key] ?? 0, 3);
-          return (
-            <Pressable
-              key={cell.key}
-              accessibilityRole="button"
-              onPress={() => onSelectDate(cell.key)}
-              style={styles.cell}
-            >
-              <View
-                style={[
-                  styles.dayCircle,
-                  selected && styles.selectedCircle,
-                  isToday && !selected && styles.todayCircle,
-                ]}
-              >
-                <Text
-                  style={[
-                    styles.day,
-                    !cell.inMonth && styles.outsideDay,
-                    selected && styles.selectedDay,
-                  ]}
+        {weeks.map((week, index) => (
+          <View key={`week-${index}`} style={styles.week}>
+            {week.map((cell) => {
+              const selected = cell.key === selectedDate;
+              const isToday = cell.key === today;
+              const count = Math.min(countsByDate[cell.key] ?? 0, 3);
+              return (
+                <Pressable
+                  key={cell.key}
+                  accessibilityRole="button"
+                  onPress={() => onSelectDate(cell.key)}
+                  style={styles.cell}
                 >
-                  {cell.day}
-                </Text>
-              </View>
-              <View style={styles.dots}>
-                {Array.from({ length: count }).map((_, index) => (
-                  <View key={index} style={styles.dot} />
-                ))}
-              </View>
-            </Pressable>
-          );
-        })}
+                  <View
+                    style={[
+                      styles.dayCircle,
+                      selected && styles.selectedCircle,
+                      isToday && !selected && styles.todayCircle,
+                    ]}
+                  >
+                    <Text
+                      style={[
+                        styles.day,
+                        !cell.inMonth && styles.outsideDay,
+                        selected && styles.selectedDay,
+                      ]}
+                    >
+                      {cell.day}
+                    </Text>
+                  </View>
+                  <View style={styles.dots}>
+                    {Array.from({ length: count }).map((_, index) => (
+                      <View key={index} style={styles.dot} />
+                    ))}
+                  </View>
+                </Pressable>
+              );
+            })}
+          </View>
+        ))}
       </View>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  calendar: {
-    borderRadius: 22,
-    padding: 12,
-    backgroundColor: colors.paper,
-    borderWidth: 1,
-    borderColor: colors.line2,
-  },
-  weekRow: {
-    flexDirection: "row",
-    marginBottom: 6,
-  },
-  weekday: {
-    flex: 1,
-    textAlign: "center",
-    color: colors.muted,
-    fontSize: 12,
-    fontWeight: "900",
-  },
-  grid: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-  },
-  cell: {
-    width: `${100 / 7}%`,
-    aspectRatio: 0.86,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  dayCircle: {
-    width: 34,
-    height: 34,
-    borderRadius: 999,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  selectedCircle: {
-    backgroundColor: colors.ink,
-  },
-  todayCircle: {
-    borderWidth: 1.5,
-    borderColor: colors.indigo,
-  },
-  day: {
-    color: colors.ink,
-    fontSize: 14,
-    fontWeight: "800",
-    fontVariant: ["tabular-nums"],
-  },
-  outsideDay: {
-    color: colors.muted2,
-  },
-  selectedDay: {
-    color: colors.paper,
-  },
-  dots: {
-    height: 8,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    gap: 2,
-  },
-  dot: {
-    width: 4,
-    height: 4,
-    borderRadius: 999,
-    backgroundColor: colors.indigo,
-  },
-});
