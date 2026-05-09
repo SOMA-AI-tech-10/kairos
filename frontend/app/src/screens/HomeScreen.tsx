@@ -1,3 +1,6 @@
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { Send } from "lucide-react-native";
 import { useCallback, useMemo, useState } from "react";
 import {
   RefreshControl,
@@ -7,9 +10,6 @@ import {
   TextInput,
   View,
 } from "react-native";
-import { Send } from "lucide-react-native";
-import { useFocusEffect, useNavigation } from "@react-navigation/native";
-import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 import { listSchedules } from "../api/schedules";
 import { Chip } from "../components/Chip";
@@ -21,7 +21,7 @@ import { ScheduleRow } from "../components/ScheduleRow";
 import { colors, shadow } from "../constants/theme";
 import type { RootStackParamList } from "../navigation/types";
 import type { Schedule } from "../types/schedule";
-import { formatDate, todayKey, toDateKey } from "../utils/dates";
+import { formatDate, toDateKey, todayKey } from "../utils/dates";
 
 const suggestions = [
   "이번 주 토요일 오후 6시에 홍대에서 친구 만나. 1시간 전에 알려줘.",

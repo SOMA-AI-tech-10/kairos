@@ -1,16 +1,17 @@
+import { useNavigation, useRoute } from "@react-navigation/native";
+import type {
+  NativeStackNavigationProp,
+  NativeStackScreenProps,
+} from "@react-navigation/native-stack";
+import { Bell, CalendarDays, ChevronLeft, Clock, MapPin } from "lucide-react-native";
 import { useCallback, useEffect, useState } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
-import { Bell, CalendarDays, ChevronLeft, Clock, MapPin } from "lucide-react-native";
-import { useNavigation, useRoute } from "@react-navigation/native";
-import type { NativeStackScreenProps } from "@react-navigation/native-stack";
-import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 import { listSchedules } from "../api/schedules";
 import { AgentTag } from "../components/AgentTag";
 import { EmptyState } from "../components/EmptyState";
 import { ErrorNotice } from "../components/ErrorNotice";
 import { IconButton } from "../components/IconButton";
-import { PrimaryButton } from "../components/PrimaryButton";
 import { colors } from "../constants/theme";
 import type { RootStackParamList } from "../navigation/types";
 import type { Schedule } from "../types/schedule";

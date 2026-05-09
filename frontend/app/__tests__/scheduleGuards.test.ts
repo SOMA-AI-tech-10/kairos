@@ -1,3 +1,5 @@
+import type { Schedule, ScheduleCandidate } from "../src/types/schedule";
+import { groupSchedulesByDate, toDateKey } from "../src/utils/dates";
 import {
   buildSchedulePayload,
   composeInput,
@@ -6,8 +8,6 @@ import {
   isReadyToConfirm,
   reminderText,
 } from "../src/utils/scheduleGuards";
-import { groupSchedulesByDate, toDateKey } from "../src/utils/dates";
-import type { Schedule, ScheduleCandidate } from "../src/types/schedule";
 
 describe("schedule guardrails", () => {
   it("keeps answers tied to the original input", () => {

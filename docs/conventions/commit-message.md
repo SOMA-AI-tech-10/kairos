@@ -14,30 +14,19 @@ Use Conventional Commits:
 
 Only the first line is required.
 
-Examples:
-
-```text
-feat(frontend): add schedule confirm card
-fix(api): preserve timezone offset
-docs(spec): update reminder policy
-chore(ci): add branch name lint workflow
-refactor(parser): split schedule parser service
-test(schedule): add default duration test
-```
-
 ## Allowed Types
 
-| Type | Use for |
-| --- | --- |
-| `feat` | User-facing feature |
-| `fix` | Bug fix |
-| `docs` | Documentation-only change |
-| `style` | Formatting-only change with no behavior impact |
+| Type       | Use for                                             |
+| ---------- | --------------------------------------------------- |
+| `feat`     | User-facing feature                                 |
+| `fix`      | Bug fix                                             |
+| `docs`     | Documentation-only change                           |
+| `style`    | Formatting-only change with no behavior impact      |
 | `refactor` | Code restructuring with no intended behavior change |
-| `test` | Test additions or updates |
-| `chore` | Maintenance task |
-| `ci` | CI configuration |
-| `build` | Build system or dependency changes |
+| `test`     | Test additions or updates                           |
+| `chore`    | Maintenance task                                    |
+| `ci`       | CI configuration                                    |
+| `build`    | Build system or dependency changes                  |
 
 ## Scopes
 

@@ -2,15 +2,15 @@
 
 ## Target Branches
 
-| Source branch | Target branch |
-| --- | --- |
-| `feature/*` | `dev` |
-| `fix/*` | `dev` |
-| `refactor/*` | `dev` |
-| `chore/*` | `dev` |
-| `docs/*` | `dev` |
-| `release/x.y.z` | `main` |
-| `hotfix/*` | `main`, then reflect into `dev` |
+| Source branch   | Target branch                   |
+| --------------- | ------------------------------- |
+| `feature/*`     | `dev`                           |
+| `fix/*`         | `dev`                           |
+| `refactor/*`    | `dev`                           |
+| `chore/*`       | `dev`                           |
+| `docs/*`        | `dev`                           |
+| `release/x.y.z` | `main`                          |
+| `hotfix/*`      | `main`, then reflect into `dev` |
 
 ## Title Format
 
@@ -65,13 +65,16 @@ Use a short, practical description:
 
 ```md
 ## Summary
-- 
+
+-
 
 ## Verification
-- 
+
+-
 
 ## Docs / Specs
-- 
+
+-
 ```
 
 For behavior changes, update the relevant spec or explain why no spec update is needed.

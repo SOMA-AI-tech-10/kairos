@@ -1,6 +1,12 @@
-import { ActivityIndicator, Pressable, StyleSheet, Text, View } from "react-native";
-import type { ComponentType } from "react";
 import type { LucideProps } from "lucide-react-native";
+import type { ComponentType } from "react";
+import {
+  ActivityIndicator,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 
 import { colors } from "../constants/theme";
 

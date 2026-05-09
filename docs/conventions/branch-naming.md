@@ -22,15 +22,15 @@ For release branches, use:
 
 ## Allowed Prefixes
 
-| Prefix | Purpose |
-| --- | --- |
-| `feature/` | New feature |
-| `fix/` | Bug fix |
-| `hotfix/` | Urgent production fix from `main` |
-| `chore/` | Build, config, package, or maintenance update |
-| `refactor/` | Refactoring without intended behavior change |
-| `docs/` | Documentation-only change |
-| `release/` | Release stabilization |
+| Prefix      | Purpose                                       |
+| ----------- | --------------------------------------------- |
+| `feature/`  | New feature                                   |
+| `fix/`      | Bug fix                                       |
+| `hotfix/`   | Urgent production fix from `main`             |
+| `chore/`    | Build, config, package, or maintenance update |
+| `refactor/` | Refactoring without intended behavior change  |
+| `docs/`     | Documentation-only change                     |
+| `release/`  | Release stabilization                         |
 
 ## Good Examples
 

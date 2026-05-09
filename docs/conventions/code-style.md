@@ -15,11 +15,15 @@ The frontend is an Expo React Native app under `frontend/app`.
 
 Follow these rules for frontend changes:
 
-- Keep source code under `frontend/app/src`.
+- All JavaScript and TypeScript code must follow the project's ESLint rules.
+- Pre-commit Git hooks must run lint checks; commits that violate lint rules are rejected.
+- Keep JavaScript and TypeScript source code under `frontend/app/src` unless there is a clear reason not to.
 - Prefer TypeScript types over implicit `any`.
-- Keep components focused and easy to scan.
+- Keep JSX/TSX components focused and easy to scan.
+- Keep each component under 100 lines whenever possible.
 - Split large components before they become hard to review.
-- Keep styling separate when a component's styles become non-trivial.
+- Do not define `StyleSheet.create` styles inside JSX/TSX component files.
+- Put component styles in a colocated `.style.ts` file.
 - Use existing navigation, constants, API, type, and utility patterns before adding new structure.
 - Use `lucide-react-native` for icons when an appropriate icon exists.
 - Avoid hard-coded user-facing strings in shared logic.
@@ -32,6 +36,15 @@ cd frontend/app
 npm run typecheck
 npm test
 ```
+
+ESLint is a required guardrail, but the repository must have a `lint` script and pre-commit hook configured before agents can run it locally:
+
+```bash
+cd frontend/app
+npm run lint
+```
+
+This repository can use native Git hooks through `core.hooksPath`; Husky is not required.
 
 ### Feature Structure
 
@@ -58,6 +71,16 @@ src/features/<feature>/
   model/
   ui/
 ```
+
+Component folders should colocate the component and styles:
+
+```text
+src/features/<feature>/ui/<Component>/
+  index.tsx
+  index.style.ts
+```
+
+For small feature-level shared styles, use a `.style.ts` file in the relevant `ui` folder.
 
 Do not migrate existing code to a new architecture as part of an unrelated task.
 
@@ -96,6 +119,8 @@ cd frontend/app
 npm run typecheck
 npm test
 ```
+
+Run `npm run lint` as well when the frontend lint script is available.
 
 Backend:
 

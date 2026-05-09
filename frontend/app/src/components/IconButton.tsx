@@ -1,6 +1,6 @@
+import type { LucideProps } from "lucide-react-native";
 import type { ComponentType } from "react";
 import { Pressable, StyleSheet } from "react-native";
-import type { LucideProps } from "lucide-react-native";
 
 import { colors } from "../constants/theme";
 

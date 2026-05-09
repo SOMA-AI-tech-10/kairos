@@ -1,9 +1,9 @@
-import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
+import { DefaultTheme, NavigationContainer } from "@react-navigation/native";
 import * as Notifications from "expo-notifications";
 import { StatusBar } from "expo-status-bar";
 
-import { RootNavigator } from "./src/navigation/RootNavigator";
 import { colors } from "./src/constants/theme";
+import { RootNavigator } from "./src/navigation/RootNavigator";
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({

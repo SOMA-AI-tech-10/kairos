@@ -85,12 +85,12 @@ Rules:
 
 ## Merge Policy
 
-| Target | Source | Merge method |
-| --- | --- | --- |
-| `dev` | `feature/*`, `fix/*`, `refactor/*`, `chore/*`, `docs/*` | Squash and Merge |
-| `main` | `release/x.y.z` | Merge Commit or fast-forward |
-| `main` | `hotfix/*` | Merge Commit or fast-forward |
-| `dev` | `hotfix/*` | Merge Commit, cherry-pick, or follow-up PR |
+| Target | Source                                                  | Merge method                               |
+| ------ | ------------------------------------------------------- | ------------------------------------------ |
+| `dev`  | `feature/*`, `fix/*`, `refactor/*`, `chore/*`, `docs/*` | Squash and Merge                           |
+| `main` | `release/x.y.z`                                         | Merge Commit or fast-forward               |
+| `main` | `hotfix/*`                                              | Merge Commit or fast-forward               |
+| `dev`  | `hotfix/*`                                              | Merge Commit, cherry-pick, or follow-up PR |
 
 ## Required Repository Settings
 

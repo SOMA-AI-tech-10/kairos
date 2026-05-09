@@ -103,13 +103,19 @@ For frontend work, also follow `frontend/AGENTS.md` and any conventions in `fron
 
 ## Recommended Local Guardrails
 
-Use Git hooks for fast local feedback:
+Use Git hooks for fast local feedback. Husky is optional; native Git hooks are enough when the repository configures a versioned hooks path.
 
 ```text
-.husky/
-  pre-commit      # lint-staged, eslint, formatting checks
-  commit-msg      # commitlint
+.githooks/
+  pre-commit      # eslint
+  commit-msg      # commitlint, when configured
   pre-push        # branch name check, optional tests
+```
+
+Enable the versioned hooks once per clone:
+
+```bash
+git config core.hooksPath .githooks
 ```
 
 Local hooks are helpful but bypassable with `--no-verify`, so important checks must also run in CI.
