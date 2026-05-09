@@ -37,16 +37,19 @@ export const styles = StyleSheet.create({
   dayCircle: {
     width: 34,
     height: 34,
-    borderRadius: 999,
+    borderRadius: 17,
     alignItems: "center",
     justifyContent: "center",
+    overflow: "hidden",
   },
   selectedCircle: {
     backgroundColor: colors.ink,
+    borderRadius: 17,
   },
   todayCircle: {
     borderWidth: 1.5,
     borderColor: colors.indigo,
+    borderRadius: 17,
   },
   day: {
     color: colors.ink,
