@@ -1,5 +1,7 @@
 import { StyleSheet } from "react-native";
 
+const DAY_DISC_SIZE = 30;
+
 export const styles = StyleSheet.create({
   root: {
     width: "100%",
@@ -27,11 +29,12 @@ export const styles = StyleSheet.create({
     paddingTop: 4,
   },
   dayDisc: {
-    width: 30,
-    height: 30,
-    borderRadius: 15,
+    width: DAY_DISC_SIZE,
+    height: DAY_DISC_SIZE,
+    borderRadius: DAY_DISC_SIZE / 2,
     alignItems: "center",
     justifyContent: "center",
+    overflow: "hidden",
   },
   dayText: {
     fontVariant: ["tabular-nums"],
